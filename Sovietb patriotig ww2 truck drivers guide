@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Red Army Motor Transport Manual</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body { font-family: Georgia, serif; background:#f0ebe2; margin:0; color:#2c2b28; line-height:1.7; }
+    header {
+        background:url('https://upload.wikimedia.org/wikipedia/commons/f/f0/Red_Army_Star_1936.png') center/120px no-repeat,
+                   #7b1c1c;
+        color:#fff; padding:80px 20px 40px; text-align:center;
+    }
+    header h1 { font-size:3em; margin:0; text-shadow:2px 2px 4px #000; }
+    nav { background:#a04646; padding:10px; text-align:center; position:sticky; top:0; }
+    nav a { color:#fff; margin:0 15px; text-decoration:none; text-transform:uppercase; font-weight:bold; }
+    section { max-width:900px; margin:auto; padding:40px 20px; }
+    .chapter { background:#fffaf1; border-left:6px solid #a04646; padding:30px; margin:50px 0; box-shadow:0 0 12px rgba(0,0,0,0.08); }
+    h2 { text-align:center; font-size:2em; color:#7b1c1c; }
+    .illustration { text-align:center; margin:20px 0; }
+    .illustration img { max-width:100%; border:4px solid #7b1c1c; box-shadow:0 0 10px rgba(0,0,0,0.4); }
+    footer { background:#7b1c1c; color:#fff; padding:20px; text-align:center; margin-top:60px; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Red Army Motor Transport Manual</h1>
+    <p>The illustrated guide for the drivers who powered the Eastern Front.</p>
+</header>
+
+<nav>
+    <a href="#intro">Intro</a>
+    <a href="#vehicles">Vehicles</a>
+    <a href="#routes">Routes</a>
+    <a href="#safety">Safety</a>
+    <a href="#maintenance">Maintenance</a>
+    <a href="#life">Life</a>
+</nav>
+
+<section id="intro" class="chapter">
+    <h2>1. Introduction: The Lifeblood of the Red Army</h2>
+    <p>
+        On the brutal Eastern Front, trucks were as vital as rifles. They brought ammunition to the front,  
+        evacuated civilians, and kept entire armies from starvation. Soviet drivers worked through snowstorms,  
+        artillery bombardments, and lethal supply gaps.
+    </p>
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/ZIS-5V_Soviet_truck.jpg" alt="ZIS-5 Truck">
+        <p><em>The ZIS-5: the backbone of Soviet wartime transport.</em></p>
+    </div>
+</section>
+
+<section id="vehicles" class="chapter">
+    <h2>2. Vehicles of the Eastern Front</h2>
+
+    <h3>ZIS-5</h3>
+    <p>A rugged pre-war design with simple mechanics. Easy to repair with limited tools.</p>
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/ZIS-5.jpg">
+    </div>
+
+    <h3>GAZ-AA</h3>
+    <p>Light truck ideal for urban and rural courier missions.</p>
+
+    <h3>Studebaker US6 (Lend-Lease)</h3>
+    <p>Beloved by drivers for reliability, traction, and cabin comfort. Many Katyusha launchers were mounted on them.</p>
+</section>
+
+<section id="routes" class="chapter">
+    <h2>3. Strategic Routes & Extreme Conditions</h2>
+
+    <h3>Road of Life (Lake Ladoga)</h3>
+    <p>Drivers crossed frozen lakes to reach besieged Leningrad, dodging shells and thin ice.</p>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Road_of_Life_Leningrad.jpg" alt="Road of Life">
+    </div>
+
+    <h3>Rasputitsa Mud Seasons</h3>
+    <p>Spring and fall rains turned roads to bottomless mud. Many trucks were pulled by horses or other trucks.</p>
+
+    <h3>Steppe Convoys</h3>
+    <p>Long, windy roads across open plains exposed drivers to German aircraft attacks.</p>
+</section>
+
+<section id="safety" class="chapter">
+    <h2>4. Safety & Frontline Protocols</h2>
+    <ul>
+        <li><strong>Lights Off:</strong> Headlights forbidden within 20 km of the front.</li>
+        <li><strong>Camouflage Nets:</strong> Used at every stop to prevent air attack.</li>
+        <li><strong>Convoy Gaps:</strong> Maintain 80–100 meters under threat of strafing.</li>
+        <li><strong>Emergency Rations:</strong> Drivers must carry dried fish, rye bread, and sunflower seeds.</li>
+    </ul>
+</section>
+
+<section id="maintenance" class="chapter">
+    <h2>5. Field Repairs Under Fire</h2>
+
+    <h3>Essential Tools</h3>
+    <ul>
+        <li>Hand crank</li>
+        <li>Wooden blocks for jacking on mud</li>
+        <li>Spare spark plugs</li>
+        <li>Cloth insulation for frozen carburetors</li>
+    </ul>
+
+    <h3>Common Fixes</h3>
+    <p><strong>Broken leaf springs:</strong> Reinforce with scavenged steel wire.</p>
+    <p><strong>Frozen fuel lines:</strong> Warm with cloth soaked in hot water.</p>
+    <p><strong>Shot tires:</strong> Fill with hay or rope to limp to a depot.</p>
+</section>
+
+<section id="life" class="chapter">
+    <h2>6. Life on the Road: Hardships & Heroism</h2>
+    <p>Red Army drivers slept in cabs, dug snow shelters, and often fought as infantry when convoys were overrun.</p>
+
+    <blockquote>
+        “A truck can save a battalion. A brave driver can save a city.”
+    </blockquote>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Lend-Lease_Studebaker_US6_in_Red_Army_service.jpg">
+        <p><em>Lend-Lease Studebaker US6 delivering Katyusha rockets.</em></p>
+    </div>
+</section>
+
+<footer>
+    Red Army Motor Transport Manual — Glory to the Drivers of Victory.
+</footer>
+
+</body>
+</html>
