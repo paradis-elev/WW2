@@ -1301,3 +1301,1306 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Tanc WW2 interactiv cu WASD și ținte mobile</title>
+  <style>
+    body {
+      background: linear-gradient(#a1c45a, #eaf3d4);
+      min-height: 100vh;
+      overflow: hidden;
+      margin: 0;
+    }
+    #battlefield {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+    #tank {
+      position: absolute;
+      width: 120px;
+      height: 80px;
+      left: 250px;
+      top: 400px;
+      z-index: 2;
+    }
+    /* Tanc (jucător) */
+    .tank-body {
+      width: 110px;
+      height: 40px;
+      background: #555;
+      border-radius: 12px;
+      position: absolute;
+      bottom: 20px;
+      left: 5px;
+    }
+    .tank-cannon {
+      width: 50px;
+      height: 10px;
+      background: #333;
+      position: absolute;
+      right: -40px;
+      top: 25px;
+      border-radius: 5px;
+    }
+    .track {
+      width: 120px;
+      height: 15px;
+      background: #222;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 6px;
+    }
+    /* Ținte: alte tancuri */
+    .enemy-tank {
+      position: absolute;
+      width: 110px;
+      height: 60px;
+      z-index: 1;
+      transition: left 0.15s linear, top 0.15s linear;
+    }
+    .enemy-body {
+      width: 90px;
+      height: 30px;
+      background: darkred;
+      border-radius: 10px;
+      position: absolute;
+      bottom: 15px;
+      left: 10px;
+    }
+    .enemy-cannon {
+      width: 40px;
+      height: 8px;
+      background: #6a2323;
+      position: absolute;
+      right: -30px;
+      top: 18px;
+      border-radius: 4px;
+    }
+    .enemy-track {
+      width: 110px;
+      height: 10px;
+      background: #6a2323;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 4px;
+    }
+    .enemy-tank.hit .enemy-body, .enemy-tank.hit .enemy-cannon, .enemy-tank.hit .enemy-track {
+      background: #888;
+      opacity: 0.3;
+    }
+    .explosion {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: url('https://img.icons8.com/emoji/96/explosion-emoji.png') no-repeat center;
+      background-size: contain;
+      pointer-events: none;
+      animation: explode 0.7s cubic-bezier(0.87,0.04,0.22,0.99);
+      z-index: 10;
+    }
+    @keyframes explode {
+      0% {opacity: 1; transform: scale(0.2);}
+      80% {opacity: 1; transform: scale(1);}
+      100% {opacity: 0; transform: scale(1.3);}
+    }
+    h1 {
+      color: #222;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 20px;
+      z-index: 100;
+      font-family: Arial, sans-serif;
+      font-size: 1.6em;
+      text-shadow: 1px 2px 2px #bbb;
+    }
+    /* Proiectil */
+    .shell {
+      position: absolute;
+      width: 16px;
+      height: 6px;
+      background: #ccc;
+      border-radius: 3px;
+      z-index: 50;
+    }
+  </style>
+</head>
+<body>
+  <div id="battlefield">
+    <h1>Control WASD. Apasă SPAȚIU să tragi. Lovește tancurile țintă mobile!</h1>
+    <div id="tank">
+      <div class="tank-body"></div>
+      <div class="tank-cannon"></div>
+      <div class="track"></div>
+    </div>
+    <!-- Tancuri țintă inamice. Ele se vor mișca -->
+    <div class="enemy-tank" id="enemy1" style="top: 120px; left: 750px;">
+      <div class="enemy-body"></div>
+      <div class="enemy-cannon"></div>
+      <div class="enemy-track"></div>
+    </div>
+    <div class="enemy-tank" id="enemy2" style="top: 330px; left: 900px;">
+      <div class="enemy-body"></div>
+      <div class="enemy-cannon"></div>
+      <div class="enemy-track"></div>
+    </div>
+    <div class="enemy-tank" id="enemy3" style="top: 500px; left: 600px;">
+      <div class="enemy-body"></div>
+      <div class="enemy-cannon"></div>
+      <div class="enemy-track"></div>
+    </div>
+  </div>
+  <script>
+    // Tank movement (WASD)
+    const tank = document.getElementById("tank");
+    let posX = 250, posY = 400;
+    const moveStep = 20;
+    document.addEventListener("keydown", function(e) {
+      switch(e.key.toLowerCase()) {
+        case 'w':
+          if (posY > 10) posY -= moveStep;
+          break;
+        case 's':
+          if (posY < window.innerHeight - 100) posY += moveStep;
+          break;
+        case 'a':
+          if (posX > 0) posX -= moveStep;
+          break;
+        case 'd':
+          if (posX < window.innerWidth - 140) posX += moveStep;
+          break;
+        case ' ':
+          fireShell();
+          break;
+      }
+      tank.style.left = posX + "px";
+      tank.style.top = posY + "px";
+    });
+
+    // Proiectil tras din tancul propriu
+    function fireShell() {
+      const shell = document.createElement("div");
+      shell.className = "shell";
+      shell.style.left = (posX + 120) + "px"; // ieșire din tun
+      shell.style.top = (posY + 35) + "px";
+      document.getElementById("battlefield").appendChild(shell);
+      let shellX = posX + 120;
+      const shellInterval = setInterval(() => {
+        shellX += 18;
+        shell.style.left = shellX + "px";
+        // Coliziune cu tancurile inamice
+        document.querySelectorAll('.enemy-tank:not(.hit)').forEach(tankTarget => {
+          const r = tankTarget.getBoundingClientRect();
+          const shellRect = shell.getBoundingClientRect();
+          if (
+            shellRect.left < r.right &&
+            shellRect.right > r.left &&
+            shellRect.top < r.bottom &&
+            shellRect.bottom > r.top
+          ) {
+              tankTarget.classList.add("hit");
+              showExplosion(tankTarget);
+
+              clearInterval(shellInterval);
+              shell.remove();
+          }
+        });
+        // Proiectilul iese din ecran
+        if (shellX > window.innerWidth) {
+          shell.remove();
+          clearInterval(shellInterval);
+        }
+      }, 15);
+    }
+
+    // Efect de explozie
+    function showExplosion(target) {
+      const rect = target.getBoundingClientRect();
+      const explosion = document.createElement("div");
+      explosion.className = "explosion";
+      explosion.style.left = (rect.left + 20) + "px";
+      explosion.style.top = (rect.top + 10) + "px";
+      document.body.appendChild(explosion);
+      setTimeout(() => {
+        explosion.remove();
+      }, 750);
+    }
+
+    // Mișcare automată a tancurilor țintă (stânga-dreapta)
+    const enemies = [
+      { el: document.getElementById("enemy1"), x: 750, y: 120, dx: 2, min: 700, max: 1000 },
+      { el: document.getElementById("enemy2"), x: 900, y: 330, dx: 3, min: 800, max: 1100 },
+      { el: document.getElementById("enemy3"), x: 600, y: 500, dx: 2.5, min: 500, max: 900 }
+    ];
+
+    function moveEnemies() {
+      enemies.forEach(enemy => {
+        if (enemy.el.classList.contains('hit')) return;
+        enemy.x += enemy.dx;
+        // Schimbă direcția când ajunge la limită
+        if (enemy.x >= enemy.max || enemy.x <= enemy.min) enemy.dx = -enemy.dx;
+        enemy.el.style.left = enemy.x + "px";
+      });
+    }
+    setInterval(moveEnemies, 30);
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Câmp de luptă WW2: tanc și avion</title>
+  <style>
+    body {
+      background: linear-gradient(#a1c45a, #eaf3d4);
+      min-height: 100vh;
+      overflow: hidden;
+      margin: 0;
+    }
+    #battlefield {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    /* Tanc jucător */
+    #tank {
+      position: absolute;
+      width: 120px;
+      height: 80px;
+      left: 250px;
+      top: 400px;
+      z-index: 3;
+    }
+    .tank-body {
+      width: 110px;
+      height: 40px;
+      background: #555;
+      border-radius: 12px;
+      position: absolute;
+      bottom: 20px;
+      left: 5px;
+    }
+    .tank-cannon {
+      width: 50px;
+      height: 10px;
+      background: #333;
+      position: absolute;
+      right: -40px;
+      top: 25px;
+      border-radius: 5px;
+    }
+    .track {
+      width: 120px;
+      height: 15px;
+      background: #222;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 6px;
+    }
+    /* Tanc inamic */
+    .enemy-tank {
+      position: absolute;
+      width: 110px;
+      height: 60px;
+      z-index: 2;
+      transition: left 0.14s linear, top 0.14s linear;
+    }
+    .enemy-body {
+      width: 90px;
+      height: 30px;
+      background: darkred;
+      border-radius: 10px;
+      position: absolute;
+      bottom: 15px;
+      left: 10px;
+    }
+    .enemy-cannon {
+      width: 40px;
+      height: 8px;
+      background: #6a2323;
+      position: absolute;
+      right: -30px;
+      top: 18px;
+      border-radius: 4px;
+    }
+    .enemy-track {
+      width: 110px;
+      height: 10px;
+      background: #6a2323;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 4px;
+    }
+    .enemy-tank.hit .enemy-body, .enemy-tank.hit .enemy-cannon, .enemy-tank.hit .enemy-track {
+      background: #888;
+      opacity: 0.3;
+    }
+    /* Avion aliat */
+    #plane {
+      position: absolute;
+      width: 90px;
+      height: 40px;
+      left: 100px;
+      top: 120px;
+      z-index: 4;
+    }
+    .plane-body {
+      width: 60px;
+      height: 16px;
+      background: #004080;
+      border-radius: 8px;
+      position: absolute;
+      left: 15px;
+      top: 15px;
+    }
+    .wing-left {
+      position: absolute;
+      left: 18px; top: 4px;
+      width: 34px; height: 11px;
+      background: #0099ff;
+      border-radius: 8px 8px 0 0;
+      transform: rotate(-18deg);
+    }
+    .wing-right {
+      position: absolute;
+      right: 18px; top: 4px;
+      width: 34px; height: 11px;
+      background: #0099ff;
+      border-radius: 8px 8px 0 0;
+      transform: rotate(18deg);
+    }
+    .nose {
+      width: 10px;
+      height: 12px;
+      background: #ccc;
+      border-radius: 6px;
+      position: absolute;
+      left: 65px;
+      top: 18px;
+    }
+    /* Proiectil tanc și avion */
+    .shell, .plane-shell {
+      position: absolute;
+      width: 16px;
+      height: 6px;
+      background: #ccc;
+      border-radius: 3px;
+      z-index: 50;
+    }
+    .plane-shell {
+      background: #00cfff;
+      width: 14px;
+      height: 4px;
+    }
+    /* Explozie */
+    .explosion {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: url('https://img.icons8.com/emoji/96/explosion-emoji.png') no-repeat center;
+      background-size: contain;
+      pointer-events: none;
+      animation: explode 0.7s cubic-bezier(0.87,0.04,0.22,0.99);
+      z-index: 10;
+    }
+    @keyframes explode {
+      0% {opacity: 1; transform: scale(0.2);}
+      80% {opacity: 1; transform: scale(1);}
+      100% {opacity: 0; transform: scale(1.3);}
+    }
+    h1 {
+      color: #222;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 20px;
+      z-index: 100;
+      font-family: Arial, sans-serif;
+      font-size: 1.2em;
+      text-shadow: 1px 2px 2px #bbb;
+    }
+  </style>
+</head>
+<body>
+  <div id="battlefield">
+    <h1>
+      Tanc: WASD + SPACE (tragere)<br>
+      Avion: I (sus), J (stânga), K (jos), L (dreapta), F (tragere)
+    </h1>
+    <!-- Tanc jucător -->
+    <div id="tank">
+      <div class="tank-body"></div>
+      <div class="tank-cannon"></div>
+      <div class="track"></div>
+    </div>
+    <!-- Avion aliat pilotabil -->
+    <div id="plane">
+      <div class="plane-body"></div>
+      <div class="wing-left"></div>
+      <div class="wing-right"></div>
+      <div class="nose"></div>
+    </div>
+    <!-- Tancuri inamice, mobile -->
+    <div class="enemy-tank" id="enemy1" style="top: 120px; left: 750px;">
+      <div class="enemy-body"></div>
+      <div class="enemy-cannon"></div>
+      <div class="enemy-track"></div>
+    </div>
+    <div class="enemy-tank" id="enemy2" style="top: 330px; left: 900px;">
+      <div class="enemy-body"></div>
+      <div class="enemy-cannon"></div>
+      <div class="enemy-track"></div>
+    </div>
+    <div class="enemy-tank" id="enemy3" style="top: 500px; left: 600px;">
+      <div class="enemy-body"></div>
+      <div class="enemy-cannon"></div>
+      <div class="enemy-track"></div>
+    </div>
+  </div>
+  <script>
+    // TANK movement & fire
+    const tank = document.getElementById("tank");
+    let tankX = 250, tankY = 400;
+    const tankSpeed = 20;
+
+    // PLANE movement & fire
+    const plane = document.getElementById("plane");
+    let planeX = 100, planeY = 120;
+    const planeSpeed = 22;
+
+    // ENEMY movement array
+    const enemies = [
+      { el: document.getElementById("enemy1"), x: 750, y: 120, dx: 2, min: 700, max: 1000, dy: 1, vmin: 90, vmax: 200 },
+      { el: document.getElementById("enemy2"), x: 900, y: 330, dx: -3, min: 800, max: 1100, dy: -1.5, vmin: 320, vmax: 390 },
+      { el: document.getElementById("enemy3"), x: 600, y: 500, dx: 2.5, min: 500, max: 900, dy: 1.2, vmin: 450, vmax: 580 }
+    ];
+
+    document.addEventListener("keydown", function(e) {
+      // Tanc WASD & shooting (SPACE)
+      if ("wasd ".includes(e.key.toLowerCase())) {
+        switch(e.key.toLowerCase()) {
+          case "w": if (tankY > 10) tankY -= tankSpeed; break;
+          case "s": if (tankY < window.innerHeight - 100) tankY += tankSpeed; break;
+          case "a": if (tankX > 0) tankX -= tankSpeed; break;
+          case "d": if (tankX < window.innerWidth - 140) tankX += tankSpeed; break;
+          case " ": fireTankShell(); break;
+        }
+        tank.style.left = tankX + "px";
+        tank.style.top = tankY + "px";
+      }
+      // Avion IJKL & shooting (F)
+      if ("ijklf".includes(e.key.toLowerCase())) {
+        switch(e.key.toLowerCase()) {
+          case "i": if (planeY > 10) planeY -= planeSpeed; break;
+          case "k": if (planeY < window.innerHeight - 52) planeY += planeSpeed; break;
+          case "j": if (planeX > 0) planeX -= planeSpeed; break;
+          case "l": if (planeX < window.innerWidth - 95) planeX += planeSpeed; break;
+          case "f": firePlaneShell(); break;
+        }
+        plane.style.left = planeX + "px";
+        plane.style.top = planeY + "px";
+      }
+    });
+
+    // Tancul trage cu SPACE
+    function fireTankShell() {
+      const shell = document.createElement("div");
+      shell.className = "shell";
+      shell.style.left = (tankX + 120) + "px";
+      shell.style.top = (tankY + 35) + "px";
+      document.getElementById("battlefield").appendChild(shell);
+      let shellX = tankX + 120;
+      const shellInterval = setInterval(() => {
+        shellX += 18;
+        shell.style.left = shellX + "px";
+        checkShellCollision(shell, shellX, parseInt(shell.style.top));
+        if (shellX > window.innerWidth) {
+          shell.remove();
+          clearInterval(shellInterval);
+        }
+      }, 15);
+    }
+    // Avionul trage cu F
+    function firePlaneShell() {
+      const shell = document.createElement("div");
+      shell.className = "plane-shell";
+      shell.style.left = (planeX + 80) + "px";
+      shell.style.top = (planeY + 15) + "px";
+      document.getElementById("battlefield").appendChild(shell);
+      let shellX = planeX + 80;
+      const shellInterval = setInterval(() => {
+        shellX += 22;
+        shell.style.left = shellX + "px";
+        checkShellCollision(shell, shellX, parseInt(shell.style.top));
+        if (shellX > window.innerWidth) {
+          shell.remove();
+          clearInterval(shellInterval);
+        }
+      }, 11);
+    }
+    // Verificare coliziune proiectil cu tanc inamic
+    function checkShellCollision(shell, shellX, shellY) {
+      document.querySelectorAll('.enemy-tank:not(.hit)').forEach(tankTarget => {
+        const r = tankTarget.getBoundingClientRect();
+        const shellRect = shell.getBoundingClientRect();
+        if (
+          shellRect.left < r.right &&
+          shellRect.right > r.left &&
+          shellRect.top < r.bottom &&
+          shellRect.bottom > r.top
+        ) {
+          tankTarget.classList.add("hit");
+          showExplosion(tankTarget);
+          shell.remove();
+        }
+      });
+    }
+    // Explozie pe tanc inamic lovit
+    function showExplosion(target) {
+      const rect = target.getBoundingClientRect();
+      const explosion = document.createElement("div");
+      explosion.className = "explosion";
+      explosion.style.left = (rect.left + 20) + "px";
+      explosion.style.top = (rect.top + 10) + "px";
+      document.body.appendChild(explosion);
+      setTimeout(() => {
+        explosion.remove();
+      }, 750);
+    }
+    // Mișcare automată tanc inamic (stânga-dreapta și puțin sus-jos)
+    function moveEnemies() {
+      enemies.forEach(enemy => {
+        if (enemy.el.classList.contains('hit')) return;
+        enemy.x += enemy.dx;
+        enemy.y += enemy.dy;
+        if (enemy.x >= enemy.max || enemy.x <= enemy.min) enemy.dx = -enemy.dx;
+        if (enemy.y >= enemy.vmax || enemy.y <= enemy.vmin) enemy.dy = -enemy.dy;
+        enemy.el.style.left = enemy.x + "px";
+        enemy.el.style.top = enemy.y + "px";
+      });
+    }
+    setInterval(moveEnemies, 30);
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Câmp de luptă WW2: tanc și avion cu controle separate</title>
+  <style>
+    body {
+      background: linear-gradient(#a1c45a, #eaf3d4);
+      min-height: 100vh;
+      overflow: hidden;
+      margin: 0;
+    }
+    #battlefield {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    /* Tanc jucător */
+    #tank {
+      position: absolute;
+      width: 120px;
+      height: 80px;
+      left: 250px;
+      top: 400px;
+      z-index: 3;
+    }
+    .tank-body {
+      width: 110px;
+      height: 40px;
+      background: #555;
+      border-radius: 12px;
+      position: absolute;
+      bottom: 20px;
+      left: 5px;
+    }
+    .tank-cannon {
+      width: 50px;
+      height: 10px;
+      background: #333;
+      position: absolute;
+      right: -40px;
+      top: 25px;
+      border-radius: 5px;
+    }
+    .track {
+      width: 120px;
+      height: 15px;
+      background: #222;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 6px;
+    }
+    /* Tanc inamic */
+    .enemy-tank {
+      position: absolute;
+      width: 110px;
+      height: 60px;
+      z-index: 2;
+      transition: left 0.14s linear, top 0.14s linear;
+    }
+    .enemy-body {
+      width: 90px;
+      height: 30px;
+      background: darkred;
+      border-radius: 10px;
+      position: absolute;
+      bottom: 15px;
+      left: 10px;
+    }
+    .enemy-cannon {
+      width: 40px;
+      height: 8px;
+      background: #6a2323;
+      position: absolute;
+      right: -30px;
+      top: 18px;
+      border-radius: 4px;
+    }
+    .enemy-track {
+      width: 110px;
+      height: 10px;
+      background: #6a2323;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 4px;
+    }
+    .enemy-tank.hit .enemy-body, .enemy-tank.hit .enemy-cannon, .enemy-tank.hit .enemy-track {
+      background: #888;
+      opacity: 0.3;
+    }
+    /* Avion aliat */
+    #plane {
+      position: absolute;
+      width: 90px;
+      height: 40px;
+      left: 100px;
+      top: 120px;
+      z-index: 4;
+    }
+    .plane-body {
+      width: 60px;
+      height: 16px;
+      background: #004080;
+      border-radius: 8px;
+      position: absolute;
+      left: 15px;
+      top: 15px;
+    }
+    .wing-left {
+      position: absolute;
+      left: 18px; top: 4px;
+      width: 34px; height: 11px;
+      background: #0099ff;
+      border-radius: 8px 8px 0 0;
+      transform: rotate(-18deg);
+    }
+    .wing-right {
+      position: absolute;
+      right: 18px; top: 4px;
+      width: 34px; height: 11px;
+      background: #0099ff;
+      border-radius: 8px 8px 0 0;
+      transform: rotate(18deg);
+    }
+    .nose {
+      width: 10px;
+      height: 12px;
+      background: #ccc;
+      border-radius: 6px;
+      position: absolute;
+      left: 65px;
+      top: 18px;
+    }
+    /* Proiectil tanc și avion */
+    .shell, .plane-shell {
+      position: absolute;
+      width: 16px;
+      height: 6px;
+      background: #ccc;
+      border-radius: 3px;
+      z-index: 50;
+    }
+    .plane-shell {
+      background: #00cfff;
+      width: 14px;
+      height: 4px;
+    }
+    /* Explozie */
+    .explosion {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: url('https://img.icons8.com/emoji/96/explosion-emoji.png') no-repeat center;
+      background-size: contain;
+      pointer-events: none;
+      animation: explode 0.7s cubic-bezier(0.87,0.04,0.22,0.99);
+      z-index: 10;
+    }
+    @keyframes explode {
+      0% {opacity: 1; transform: scale(0.2);}
+      80% {opacity: 1; transform: scale(1);}
+      100% {opacity: 0; transform: scale(1.3);}
+    }
+    h1 {
+      color: #222;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 20px;
+      z-index: 100;
+      font-family: Arial, sans-serif;
+      font-size: 1.2em;
+      text-shadow: 1px 2px 2px #bbb;
+    }
+  </style>
+</head>
+<body>
+  <div id="battlefield">
+    <h1>
+      Tanc: WASD + SPACE (tragere)<br>
+      Avion: Săgeți + F (tragere)
+    </h1>
+    <!-- Tanc jucător -->
+    <div id="tank">
+      <div class="tank-body"></div>
+      <div class="tank-cannon"></div>
+      <div class="track"></div>
+    </div>
+    <!-- Avion aliat pilotabil -->
+    <div id="plane">
+      <div class="plane-body"></div>
+      <div class="wing-left"></div>
+      <div class="wing-right"></div>
+      <div class="nose"></div>
+    </div>
+    <!-- Tancuri inamice, mobile -->
+    <div class="enemy-tank" id="enemy1" style="top: 120px; left: 750px;">
+      <div class="enemy-body"></div>
+      <div class="enemy-cannon"></div>
+      <div class="enemy-track"></div>
+    </div>
+    <div class="enemy-tank" id="enemy2" style="top: 330px; left: 900px;">
+      <div class="enemy-body"></div>
+      <div class="enemy-cannon"></div>
+      <div class="enemy-track"></div>
+    </div>
+    <div class="enemy-tank" id="enemy3" style="top: 500px; left: 600px;">
+      <div class="enemy-body"></div>
+      <div class="enemy-cannon"></div>
+      <div class="enemy-track"></div>
+    </div>
+  </div>
+  <script>
+    // TANK movement & fire
+    const tank = document.getElementById("tank");
+    let tankX = 250, tankY = 400;
+    const tankSpeed = 20;
+
+    // PLANE movement & fire
+    const plane = document.getElementById("plane");
+    let planeX = 100, planeY = 120;
+    const planeSpeed = 22;
+
+    // ENEMY movement array
+    const enemies = [
+      { el: document.getElementById("enemy1"), x: 750, y: 120, dx: 2, min: 700, max: 1000, dy: 1, vmin: 90, vmax: 200 },
+      { el: document.getElementById("enemy2"), x: 900, y: 330, dx: -3, min: 800, max: 1100, dy: -1.5, vmin: 320, vmax: 390 },
+      { el: document.getElementById("enemy3"), x: 600, y: 500, dx: 2.5, min: 500, max: 900, dy: 1.2, vmin: 450, vmax: 580 }
+    ];
+
+    document.addEventListener("keydown", function(e) {
+      // Tanc WASD & shooting (SPACE)
+      if ("wasd ".includes(e.key.toLowerCase())) {
+        switch(e.key.toLowerCase()) {
+          case "w": if (tankY > 10) tankY -= tankSpeed; break;
+          case "s": if (tankY < window.innerHeight - 100) tankY += tankSpeed; break;
+          case "a": if (tankX > 0) tankX -= tankSpeed; break;
+          case "d": if (tankX < window.innerWidth - 140) tankX += tankSpeed; break;
+          case " ": fireTankShell(); break;
+        }
+        tank.style.left = tankX + "px";
+        tank.style.top = tankY + "px";
+      }
+      // Avion: Săgețile + F
+      if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "f", "F"].includes(e.key)) {
+        switch(e.key) {
+          case "ArrowUp": if (planeY > 10) planeY -= planeSpeed; break;
+          case "ArrowDown": if (planeY < window.innerHeight - 52) planeY += planeSpeed; break;
+          case "ArrowLeft": if (planeX > 0) planeX -= planeSpeed; break;
+          case "ArrowRight": if (planeX < window.innerWidth - 95) planeX += planeSpeed; break;
+          case "f":
+          case "F": firePlaneShell(); break;
+        }
+        plane.style.left = planeX + "px";
+        plane.style.top = planeY + "px";
+      }
+    });
+
+    // Tancul trage cu SPACE
+    function fireTankShell() {
+      const shell = document.createElement("div");
+      shell.className = "shell";
+      shell.style.left = (tankX + 120) + "px";
+      shell.style.top = (tankY + 35) + "px";
+      document.getElementById("battlefield").appendChild(shell);
+      let shellX = tankX + 120;
+      const shellInterval = setInterval(() => {
+        shellX += 18;
+        shell.style.left = shellX + "px";
+        checkShellCollision(shell, shellX, parseInt(shell.style.top));
+        if (shellX > window.innerWidth) {
+          shell.remove();
+          clearInterval(shellInterval);
+        }
+      }, 15);
+    }
+    // Avionul trage cu F
+    function firePlaneShell() {
+      const shell = document.createElement("div");
+      shell.className = "plane-shell";
+      shell.style.left = (planeX + 80) + "px";
+      shell.style.top = (planeY + 15) + "px";
+      document.getElementById("battlefield").appendChild(shell);
+      let shellX = planeX + 80;
+      const shellInterval = setInterval(() => {
+        shellX += 22;
+        shell.style.left = shellX + "px";
+        checkShellCollision(shell, shellX, parseInt(shell.style.top));
+        if (shellX > window.innerWidth) {
+          shell.remove();
+          clearInterval(shellInterval);
+        }
+      }, 11);
+    }
+    // Verificare coliziune proiectil cu tanc inamic
+    function checkShellCollision(shell, shellX, shellY) {
+      document.querySelectorAll('.enemy-tank:not(.hit)').forEach(tankTarget => {
+        const r = tankTarget.getBoundingClientRect();
+        const shellRect = shell.getBoundingClientRect();
+        if (
+          shellRect.left < r.right &&
+          shellRect.right > r.left &&
+          shellRect.top < r.bottom &&
+          shellRect.bottom > r.top
+        ) {
+          tankTarget.classList.add("hit");
+          showExplosion(tankTarget);
+          shell.remove();
+        }
+      });
+    }
+    // Explozie pe tanc inamic lovit
+    function showExplosion(target) {
+      const rect = target.getBoundingClientRect();
+      const explosion = document.createElement("div");
+      explosion.className = "explosion";
+      explosion.style.left = (rect.left + 20) + "px";
+      explosion.style.top = (rect.top + 10) + "px";
+      document.body.appendChild(explosion);
+      setTimeout(() => {
+        explosion.remove();
+      }, 750);
+    }
+    // Mișcare automată tanc inamic (stânga-dreapta și puțin sus-jos)
+    function moveEnemies() {
+      enemies.forEach(enemy => {
+        if (enemy.el.classList.contains('hit')) return;
+        enemy.x += enemy.dx;
+        enemy.y += enemy.dy;
+        if (enemy.x >= enemy.max || enemy.x <= enemy.min) enemy.dx = -enemy.dx;
+        if (enemy.y >= enemy.vmax || enemy.y <= enemy.vmin) enemy.dy = -enemy.dy;
+        enemy.el.style.left = enemy.x + "px";
+        enemy.el.style.top = enemy.y + "px";
+      });
+    }
+    setInterval(moveEnemies, 30);
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Câmp de luptă WW2: tanc + avion cu săgeți</title>
+  <style>
+    body {
+      background: linear-gradient(#a1c45a, #eaf3d4);
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #battlefield {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* --- TANC JUCĂTOR --- */
+    #tank {
+      position: absolute;
+      width: 120px;
+      height: 80px;
+      left: 250px;
+      top: 400px;
+      z-index: 3;
+    }
+    .tank-body {
+      width: 110px;
+      height: 40px;
+      background: #555;
+      border-radius: 12px;
+      position: absolute;
+      bottom: 20px;
+      left: 5px;
+    }
+    .tank-cannon {
+      width: 50px;
+      height: 10px;
+      background: #333;
+      position: absolute;
+      right: -40px;
+      top: 25px;
+      border-radius: 5px;
+    }
+    .track {
+      width: 120px;
+      height: 15px;
+      background: #222;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 6px;
+    }
+
+    /* --- AVION CONTROLAT CU SĂGEȚILE --- */
+    #plane {
+      position: absolute;
+      width: 90px;
+      height: 40px;
+      left: 100px;
+      top: 120px;
+      z-index: 4;
+    }
+    .plane-body {
+      width: 60px;
+      height: 16px;
+      background: #004080;
+      border-radius: 8px;
+      position: absolute;
+      left: 15px;
+      top: 15px;
+    }
+    .wing-left {
+      position: absolute;
+      left: 18px; top: 4px;
+      width: 34px; height: 11px;
+      background: #0099ff;
+      border-radius: 8px 8px 0 0;
+      transform: rotate(-18deg);
+    }
+    .wing-right {
+      position: absolute;
+      right: 18px; top: 4px;
+      width: 34px; height: 11px;
+      background: #0099ff;
+      border-radius: 8px 8px 0 0;
+      transform: rotate(18deg);
+    }
+    .nose {
+      width: 10px;
+      height: 12px;
+      background: #ccc;
+      border-radius: 6px;
+      position: absolute;
+      left: 65px;
+      top: 18px;
+    }
+
+    /* --- INAMICI --- */
+    .enemy-tank {
+      position: absolute;
+      width: 110px;
+      height: 60px;
+      transition: left 0.14s linear, top 0.14s linear;
+      z-index: 2;
+    }
+    .enemy-body {
+      width: 90px;
+      height: 30px;
+      background: darkred;
+      border-radius: 10px;
+      position: absolute;
+      bottom: 15px;
+      left: 10px;
+    }
+    .enemy-cannon {
+      width: 40px;
+      height: 8px;
+      background: #6a2323;
+      position: absolute;
+      right: -30px;
+      top: 18px;
+      border-radius: 4px;
+    }
+    .enemy-track {
+      width: 110px;
+      height: 10px;
+      background: #6a2323;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 4px;
+    }
+
+    .enemy-tank.hit .enemy-body,
+    .enemy-tank.hit .enemy-cannon,
+    .enemy-tank.hit .enemy-track {
+      background: #777;
+      opacity: 0.4;
+    }
+
+    /* PROIECTILE */
+    .shell, .plane-shell {
+      position: absolute;
+      width: 16px;
+      height: 6px;
+      background: #ccc;
+      border-radius: 3px;
+      z-index: 20;
+    }
+    .plane-shell {
+      width: 14px;
+      height: 4px;
+      background: #00eaff;
+    }
+
+    /* EXPLOZIE */
+    .explosion {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: url('https://img.icons8.com/emoji/96/explosion-emoji.png') no-repeat center;
+      background-size: contain;
+      animation: explode 0.7s ease-out;
+      pointer-events: none;
+    }
+    @keyframes explode {
+      0% { transform: scale(0.2); opacity: 1; }
+      80% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.3); opacity: 0; }
+    }
+
+    h1 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 20px;
+      font-family: Arial;
+      z-index: 100;
+      font-size: 1.2em;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+
+<div id="battlefield">
+
+  <h1>
+    TANC: WASD + SPACE • AVION: SĂGEȚI + F
+  </h1>
+
+  <!-- TANC -->
+  <div id="tank">
+    <div class="tank-body"></div>
+    <div class="tank-cannon"></div>
+    <div class="track"></div>
+  </div>
+
+  <!-- AVION -->
+  <div id="plane">
+    <div class="plane-body"></div>
+    <div class="wing-left"></div>
+    <div class="wing-right"></div>
+    <div class="nose"></div>
+  </div>
+
+  <!-- INAMICI -->
+  <div class="enemy-tank" id="enemy1" style="left: 750px; top: 120px;">
+    <div class="enemy-body"></div>
+    <div class="enemy-cannon"></div>
+    <div class="enemy-track"></div>
+  </div>
+  <div class="enemy-tank" id="enemy2" style="left: 900px; top: 330px;">
+    <div class="enemy-body"></div>
+    <div class="enemy-cannon"></div>
+    <div class="enemy-track"></div>
+  </div>
+  <div class="enemy-tank" id="enemy3" style="left: 600px; top: 500px;">
+    <div class="enemy-body"></div>
+    <div class="enemy-cannon"></div>
+    <div class="enemy-track"></div>
+  </div>
+
+</div>
+
+<script>
+
+  /* ---------------- TANC ---------------- */
+  const tank = document.getElementById("tank");
+  let tankX = 250, tankY = 400;
+
+  /* ---------------- AVION ---------------- */
+  const plane = document.getElementById("plane");
+  let planeX = 100, planeY = 120;
+
+  const tankSpeed = 20;
+  const planeSpeed = 23;
+
+  /* ---------------- INAMICI ---------------- */
+  const enemies = [
+    { el: enemy1, x: 750, y: 120, dx: 2, min: 700, max: 1000, dy: 1, vmin: 80, vmax: 180 },
+    { el: enemy2, x: 900, y: 330, dx: -3, min: 800, max: 1100, dy: -1.5, vmin: 300, vmax: 380 },
+    { el: enemy3, x: 600, y: 500, dx: 2.5, min: 500, max: 900, dy: 1.2, vmin: 450, vmax: 580 }
+  ];
+
+  document.addEventListener("keydown", e => {
+
+    /* --- CONTROALE TANC --- */
+    switch(e.key.toLowerCase()) {
+      case "w": if (tankY > 0) tankY -= tankSpeed; break;
+      case "s": if (tankY < innerHeight - 100) tankY += tankSpeed; break;
+      case "a": if (tankX > 0) tankX -= tankSpeed; break;
+      case "d": if (tankX < innerWidth - 140) tankX += tankSpeed; break;
+      case " ": fireTankShell(); break;
+    }
+
+    tank.style.left = tankX + "px";
+    tank.style.top  = tankY + "px";
+
+    /* --- CONTROALE AVION --- */
+    switch(e.key) {
+      case "ArrowUp":    if (planeY > 0) planeY -= planeSpeed; break;
+      case "ArrowDown":  if (planeY < innerHeight - 50) planeY += planeSpeed; break;
+      case "ArrowLeft":  if (planeX > 0) planeX -= planeSpeed; break;
+      case "ArrowRight": if (planeX < innerWidth - 90) planeX += planeSpeed; break;
+      case "f": case "F": firePlaneShell(); break;
+    }
+
+    plane.style.left = planeX + "px";
+    plane.style.top  = planeY + "px";
+  });
+
+  /* ---------------- TRAGERE TANC ---------------- */
+  function fireTankShell() {
+    const shell = document.createElement("div");
+    shell.className = "shell";
+    shell.style.left = (tankX + 120) + "px";
+    shell.style.top  = (tankY + 35) + "px";
+
+    battlefield.appendChild(shell);
+
+    let sx = tankX + 120;
+    const interval = setInterval(() => {
+      sx += 18;
+      shell.style.left = sx + "px";
+
+      checkHit(shell);
+
+      if (sx > innerWidth) {
+        shell.remove();
+        clearInterval(interval);
+      }
+    }, 15);
+  }
+
+  /* ---------------- TRAGERE AVION ---------------- */
+  function firePlaneShell() {
+    const shell = document.createElement("div");
+    shell.className = "plane-shell";
+    shell.style.left = (planeX + 80) + "px";
+    shell.style.top  = (planeY + 15) + "px";
+
+    battlefield.appendChild(shell);
+
+    let sx = planeX + 80;
+    const interval = setInterval(() => {
+      sx += 22;
+      shell.style.left = sx + "px";
+
+      checkHit(shell);
+
+      if (sx > innerWidth) {
+        shell.remove();
+        clearInterval(interval);
+      }
+    }, 11);
+  }
+
+  /* ---------------- COLIZIUNI ---------------- */
+  function checkHit(shell) {
+    const s = shell.getBoundingClientRect();
+    enemies.forEach(enemy => {
+      if (enemy.el.classList.contains("hit")) return;
+
+      const r = enemy.el.getBoundingClientRect();
+
+      if (s.right > r.left && s.left < r.right &&
+          s.bottom > r.top && s.top < r.bottom) {
+
+        enemy.el.classList.add("hit");
+        showExplosion(enemy.el);
+        shell.remove();
+      }
+    });
+  }
+
+  /* ---------------- EXPLOZIE ---------------- */
+  function showExplosion(target) {
+    const r = target.getBoundingClientRect();
+    const boom = document.createElement("div");
+    boom.className = "explosion";
+    boom.style.left = (r.left + 20) + "px";
+    boom.style.top  = (r.top + 10) + "px";
+    document.body.appendChild(boom);
+
+    setTimeout(() => boom.remove(), 700);
+  }
+
+  /* ---------------- MIȘCARE INAMICI ---------------- */
+  setInterval(() => {
+    enemies.forEach(e => {
+      if (e.el.classList.contains("hit")) return;
+
+      e.x += e.dx;
+      e.y += e.dy;
+
+      if (e.x < e.min || e.x > e.max) e.dx *= -1;
+      if (e.y < e.vmin || e.y > e.vmax) e.dy *= -1;
+
+      e.el.style.left = e.x + "px";
+      e.el.style.top  = e.y + "px";
+    });
+  }, 30);
+
+</script>
+
+</body>
+</html>
