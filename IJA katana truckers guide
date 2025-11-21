@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Imperial Japanese Transport Corps Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body { font-family: Georgia, serif; background:#f2efe8; margin:0; color:#2c2b28; line-height:1.7; }
+    header {
+        background:url('https://upload.wikimedia.org/wikipedia/commons/4/43/Imperial_Seal_of_Japan.svg') center/120px no-repeat,
+                   #5e0e0e;
+        color:#fff; padding:80px 20px 40px; text-align:center;
+    }
+    header h1 { font-size:3em; margin:0; text-shadow:2px 2px 4px #000; }
+    nav { background:#8d3636; text-align:center; padding:10px; position:sticky; top:0; }
+    nav a { color:#fff; margin:0 15px; font-weight:bold; text-decoration:none; text-transform:uppercase; }
+    section { max-width:900px; margin:auto; padding:40px 20px; }
+    .chapter { background:#fdfaf4; border-left:6px solid #8d3636; padding:30px; margin:50px 0; box-shadow:0 0 12px rgba(0,0,0,0.08); }
+    h2 { text-align:center; color:#5e0e0e; font-size:2em; }
+    .illustration { text-align:center; margin:20px 0; }
+    .illustration img { max-width:100%; border:4px solid #5e0e0e; box-shadow:0 0 10px rgba(0,0,0,0.4); }
+    footer { background:#5e0e0e; color:#fff; padding:20px; text-align:center; margin-top:60px; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Imperial Japanese Transport Corps Guide</h1>
+    <p>The official wartime handbook for truck crews across Asia and the Pacific.</p>
+</header>
+
+<nav>
+    <a href="#intro">Intro</a>
+    <a href="#vehicles">Vehicles</a>
+    <a href="#routes">Routes</a>
+    <a href="#safety">Safety</a>
+    <a href="#maintenance">Maintenance</a>
+    <a href="#life">Life</a>
+</nav>
+
+<section id="intro" class="chapter">
+    <h2>1. Introduction: Supply in the Empire’s Far-Flung Fronts</h2>
+    <p>
+        From Manchuria to Burma to the scattered islands of the Pacific, Japanese truck crews faced  
+        brutal terrain, constant mechanical shortages, and dangerous combat zones. Their work was  
+        essential to maintaining the Imperial war effort.
+    </p>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Toyota_GB_Military_Truck.jpg" alt="Toyota GB">
+        <p><em>Toyota GB — a standard truck of the Transport Corps.</em></p>
+    </div>
+</section>
+
+<section id="vehicles" class="chapter">
+    <h2>2. Vehicles of the Imperial Transport Corps</h2>
+
+    <h3>Toyota GB</h3>
+    <p>Widely used, though limited by wartime material shortages.</p>
+
+    <h3>Type 94 6-Wheel Truck</h3>
+    <p>Served infantry divisions; known for difficult maintenance in tropical climates.</p>
+
+    <h3>Nissan 80</h3>
+    <p>A basic but dependable vehicle for courier and transport duties.</p>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Nissan_80_japan_truck.jpg" alt="Nissan 80">
+    </div>
+</section>
+
+<section id="routes" class="chapter">
+    <h2>3. Routes Across Asia & the Pacific</h2>
+
+    <h3>Burma & India Front</h3>
+    <p>Monsoons washed out roads, creating knee-deep mud and landslides.</p>
+
+    <h3>Pacific Islands</h3>
+    <p>Narrow jungle tracks and coral roads destroyed tires and suspensions quickly.</p>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/IJA_motor_pool_Pacific.jpg" alt="IJA Motor Pool">
+    </div>
+
+    <h3>Manchuria</h3>
+    <p>Cold winters caused fuel to gel and engines to crack without proper warming.</p>
+</section>
+
+<section id="safety" class="chapter">
+    <h2>4. Safety, Security & Survival</h2>
+    <ul>
+        <li><strong>Camouflage nets</strong> required during stops.</li>
+        <li><strong>Minimal headlights:</strong> enemy aircraft were common.</li>
+        <li><strong>Carry personal ration kits</strong> for isolated islands.</li>
+        <li><strong>Insect nets & quinine</strong> essential in malaria regions.</li>
+    </ul>
+</section>
+
+<section id="maintenance" class="chapter">
+    <h2>5. Field Repairs & Improvised Solutions</h2>
+
+    <h3>Tropical Problems</h3>
+    <p><strong>Humidity damage:</strong> Dry electrical parts over fire-heated metal plates.</p>
+    <p><strong>Mud-filled brakes:</strong> Clean with bamboo scrapers.</p>
+
+    <h3>Fuel Shortages</h3>
+    <p>Crews often mixed low-octane substitutes or used reclaimed oils.</p>
+</section>
+
+<section id="life" class="chapter">
+    <h2>6. Life in the Convoy</h2>
+    <p>
+        Drivers often lived in makeshift huts or slept under their trucks.  
+        Harsh discipline, scarce supplies, and constant movement defined their world.
+    </p>
+
+    <blockquote>
+        “A driver must move forward, no matter the jungle, no matter the night.”
+    </blockquote>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/IJA_truck_convoy_1942.jpg" alt="IJA convoy">
+    </div>
+</section>
+
+<footer>
+    Imperial Transport Corps Guide — In honor of the men who drove the Empire’s supply lines.
+</footer>
+
+</body>
+</html>
