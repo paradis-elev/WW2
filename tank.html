@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Tanc cu Ținte</title>
+<style>
+    body {
+        background: #222;
+        color: white;
+        text-align: center;
+        font-family: Arial;
+        margin: 0;
+        overflow: hidden;
+    }
+    #game {
+        display: block;
+        margin: 0 auto;
+        background: #333;
+        border: 3px solid #555;
+    }
+</style>
+</head>
+<body>
+
+<h2>Tanc – Trage și Distruge Ținte</h2>
+<p>Mișcare: <b>W A S D</b> | Rotire: <b>Q / E</b> | Trage: <b>SPACE</b></p>
+
+<canvas id="game" width="900" height="550"></canvas>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+/* --- TANC --- */
+let tank = {
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+    angle: 0,
+    speed: 3,
+    size: 40
+};
+
+/* --- LISTE PROIECTILE & ȚINTE --- */
+let bullets = [];
+let targets = [];
+
+/* --- GENEREAZĂ ȚINTE --- */
+function spawnTarget() {
+    targets.push({
+        x: Math.random() * (canvas.width - 50) + 25,
+        y: Math.random() * (canvas.height - 50) + 25,
+        size: 30
+    });
+}
+
+/* inițial 5 ținte */
+for (let i = 0; i < 5; i++) spawnTarget();
+
+/* --- INPUT --- */
+let keys = {};
+document.addEventListener("keydown", e => {
+    keys[e.key.toLowerCase()] = true;
+
+    if (e.key === " ") {
+        shoot();
+    }
+});
+document.addEventListener("keyup", e => keys[e.key.toLowerCase()] = false);
+
+/* --- TRAGERE --- */
+function shoot() {
+    bullets.push({
+        x: tank.x + Math.cos(tank.angle) * 30,
+        y: tank.y + Math.sin(tank.angle) * 30,
+        angle: tank.angle,
+        speed: 8
+    });
+}
+
+/* --- UPDATE --- */
+function update() {
+    // mișcare tanc
+    if (keys["q"]) tank.angle -= 0.05;
+    if (keys["e"]) tank.angle += 0.05;
+
+    if (keys["w"]) {
+        tank.x += Math.cos(tank.angle) * tank.speed;
+        tank.y += Math.sin(tank.angle) * tank.speed;
+    }
+    if (keys["s"]) {
+        tank.x -= Math.cos(tank.angle) * tank.speed;
+        tank.y -= Math.sin(tank.angle) * tank.speed;
+    }
+    if (keys["a"]) {
+        tank.x += Math.cos(tank.angle - Math.PI/2) * tank.speed;
+        tank.y += Math.sin(tank.angle - Math.PI/2) * tank.speed;
+    }
+    if (keys["d"]) {
+        tank.x += Math.cos(tank.angle + Math.PI/2) * tank.speed;
+        tank.y += Math.sin(tank.angle + Math.PI/2) * tank.speed;
+    }
+
+    // limite
+    tank.x = Math.max(0, Math.min(canvas.width, tank.x));
+    tank.y = Math.max(0, Math.min(canvas.height, tank.y));
+
+    // actualizare proiectile
+    bullets.forEach((b, i) => {
+        b.x += Math.cos(b.angle) * b.speed;
+        b.y += Math.sin(b.angle) * b.speed;
+
+        // șterge dacă ies din ecran
+        if (b.x < 0 || b.x > canvas.width || b.y < 0 || b.y > canvas.height) {
+            bullets.splice(i, 1);
+        }
+    });
+
+    // coliziuni cu ținte
+    bullets.forEach((b, bi) => {
+        targets.forEach((t, ti) => {
+            let dist = Math.hypot(b.x - t.x, b.y - t.y);
+            if (dist < t.size) {
+                // distruge ținta și glonțul
+                bullets.splice(bi, 1);
+                targets.splice(ti, 1);
+                spawnTarget(); // regenerează o țintă nouă
+            }
+        });
+    });
+}
+
+/* --- DESENARE --- */
+function drawTank() {
+    ctx.save();
+    ctx.translate(tank.x, tank.y);
+    ctx.rotate(tank.angle);
+
+    ctx.fillStyle = "olive";
+    ctx.fillRect(-tank.size/2, -tank.size/2, tank.size, tank.size);
+
+    ctx.fillStyle = "darkgreen";
+    ctx.fillRect(tank.size/2, -5, 30, 10);
+
+    ctx.restore();
+}
+
+function drawBullets() {
+    ctx.fillStyle = "yellow";
+    bullets.forEach(b => {
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, 5, 0, Math.PI*2);
+        ctx.fill();
+    });
+}
+
+function drawTargets() {
+    ctx.fillStyle = "red";
+    targets.forEach(t => {
+        ctx.beginPath();
+        ctx.arc(t.x, t.y, t.size, 0, Math.PI * 2);
+        ctx.fill();
+    });
+}
+
+/* --- LOOP --- */
+function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    update();
+    drawTargets();
+    drawBullets();
+    drawTank();
+    requestAnimationFrame(loop);
+}
+loop();
+</script>
+
+</body>
+</html>
