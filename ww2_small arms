@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evolution of Small Arms in WWII - Global Overview</title>
+<style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; background: #f5f5f5; color: #333; }
+    header { text-align: center; margin-bottom: 40px; }
+    h1 { font-size: 2.5em; color: #222; }
+    h2 { color: #444; margin-top: 30px; border-bottom: 2px solid #ccc; padding-bottom: 5px; }
+    h3 { color: #555; margin-top: 20px; }
+    section { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    img { max-width: 100%; display: block; margin: 10px 0; }
+    .weapon-component { margin-left: 20px; }
+    ul { margin-top: 5px; }
+    footer { text-align: center; margin-top: 40px; font-size: 0.9em; color: #777; }
+    .timeline { font-style: italic; color: #666; margin-bottom: 15px; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Evolution of Small Arms in World War II</h1>
+    <p>A global overview of infantry weapons, their evolution, and technical components.</p>
+</header>
+
+<section>
+    <h2>Introduction</h2>
+    <p>World War II saw a dramatic evolution of infantry firearms. Armies shifted from traditional bolt-action rifles to semi-automatic rifles, submachine guns, and versatile light machine guns. The technological race emphasized firepower, mobility, and ease of production. This document traces the evolution country by country.</p>
+</section>
+
+<!-- ======================= GERMANY ======================= -->
+<section>
+    <h2>Germany</h2>
+    <p class="timeline">Evolution timeline: 1935–1945</p>
+
+    <h3>Bolt-Action Rifles</h3>
+    <h4>Karabiner 98k</h4>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Kar98k.jpg/320px-Kar98k.jpg" alt="Karabiner 98k">
+    <p>The Kar98k (7.92×57mm Mauser) was Germany’s main infantry rifle early in the war. Reliable, accurate, and rugged, it remained in use throughout the conflict.</p>
+    <div class="weapon-component">
+        <strong>Components:</strong>
+        <ul>
+            <li>Barrel: 600 mm, rifled</li>
+            <li>Bolt: Mauser 98 controlled-feed system</li>
+            <li>Magazine: 5-round internal</li>
+            <li>Sights: Hooded front post, tangent rear</li>
+            <li>Stock: One-piece wooden with metal fittings</li>
+        </ul>
+    </div>
+
+    <h3>Semi-Automatic Rifles</h3>
+    <h4>Gewehr 41 / Gewehr 43</h4>
+    <p>Germany’s first semi-automatic rifles, designed to give infantry faster fire without full auto recoil problems. The G43 was an improved version of the G41.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>7.92×57mm Mauser chambered</li>
+            <li>Gas-operated semi-auto</li>
+            <li>10-round detachable magazine</li>
+            <li>Barrel: ~600 mm</li>
+            <li>Stock: Wooden, ergonomic for semi-auto handling</li>
+        </ul>
+    </div>
+
+    <h3>Submachine Guns</h3>
+    <h4>MP38 / MP40</h4>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/MP-40.jpg/320px-MP-40.jpg" alt="MP40">
+    <p>Iconic SMG for German troops, chambered in 9×19mm Parabellum, collapsible stock for mobility.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Blowback-operated, fully automatic</li>
+            <li>32-round detachable box magazine</li>
+            <li>Barrel: 251 mm rifled</li>
+            <li>Folding steel stock</li>
+        </ul>
+    </div>
+
+    <h3>Light & Medium Machine Guns</h3>
+    <h4>MG34 / MG42</h4>
+    <p>Versatile LMGs with high fire rates (MG42 ~1,200 rpm) and adaptable mounts. Key to German infantry firepower.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>7.92×57mm Mauser</li>
+            <li>Recoil-operated, air-cooled</li>
+            <li>Belt-fed, quick-change barrel</li>
+            <li>Adjustable sights</li>
+            <li>Stock: Wooden with bipod/tripod</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ======================= USA ======================= -->
+<section>
+    <h2>United States</h2>
+    <p class="timeline">Evolution timeline: 1939–1945</p>
+
+    <h3>Bolt-Action Rifles</h3>
+    <h4>M1903 Springfield</h4>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/M1903_springfield.jpg/320px-M1903_springfield.jpg" alt="M1903 Springfield">
+    <p>Reliable, accurate .30-06 bolt-action rifle, mainly used by marksmen and early war infantry.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Barrel: 24-inch rifled steel</li>
+            <li>Internal 5-round magazine</li>
+            <li>Turn-bolt action</li>
+            <li>Adjustable aperture sights</li>
+            <li>Walnut stock</li>
+        </ul>
+    </div>
+
+    <h3>Semi-Automatic Rifles</h3>
+    <h4>M1 Garand</h4>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/M1_Garand.jpg/320px-M1_Garand.jpg" alt="M1 Garand">
+    <p>The M1 Garand gave US infantry a semi-auto edge with an 8-round en bloc clip in .30-06 Springfield.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Gas-operated, semi-automatic</li>
+            <li>Barrel: 24-inch</li>
+            <li>Iron sights</li>
+            <li>8-round internal magazine (en bloc clip)</li>
+            <li>Walnut stock</li>
+        </ul>
+    </div>
+
+    <h3>Submachine Guns</h3>
+    <h4>Thompson M1A1</h4>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Thompson_submachine_gun.jpg/320px-Thompson_submachine_gun.jpg" alt="Thompson M1A1">
+    <p>.45 ACP, high reliability, famous for close-quarters combat. Box or drum magazines available.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Blowback, select fire</li>
+            <li>20/30-round box, 50/100-round drum</li>
+            <li>Barrel: 279 mm</li>
+            <li>Wooden stock</li>
+        </ul>
+    </div>
+
+    <h3>Light Machine Guns</h3>
+    <h4>Browning Automatic Rifle (BAR)</h4>
+    <p>Ranged fire support in a portable package. .30-06, 20-round magazine.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Gas-operated, air-cooled</li>
+            <li>Barrel: 24-inch, quick-change on later models</li>
+            <li>20-round magazine</li>
+            <li>Bipod mounted</li>
+            <li>Wooden stock</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ======================= UNITED KINGDOM ======================= -->
+<section>
+    <h2>United Kingdom</h2>
+    <p class="timeline">Evolution timeline: 1939–1945</p>
+
+    <h3>Bolt-Action Rifles</h3>
+    <h4>Lee-Enfield No.4 Mk I</h4>
+    <p>.303 British, 10-round magazine, fast bolt-action, the mainstay of British infantry.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Barrel: 25-inch</li>
+            <li>Magazine: 10-round detachable (fixed in most cases)</li>
+            <li>Rear aperture and front blade sights</li>
+            <li>Wooden stock</li>
+        </ul>
+    </div>
+
+    <h3>Semi-Automatic Rifles</h3>
+    <p>UK focused less on semi-autos due to supply and doctrine; experimentation with EM-2 later in war.</p>
+
+    <h3>Submachine Guns</h3>
+    <h4>Sten Gun</h4>
+    <p>9mm, extremely cheap and simple to produce, widely used for resistance and airborne troops.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Blowback, open-bolt, fully automatic</li>
+            <li>32-round side or top magazine</li>
+            <li>Steel tube construction</li>
+            <li>Folding or fixed stock variants</li>
+        </ul>
+    </div>
+
+    <h3>Light Machine Guns</h3>
+    <h4>Bren Gun</h4>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Bren_Gun.jpg/320px-Bren_Gun.jpg" alt="Bren Gun">
+    <p>Reliable .303 British LMG, top-fed magazine, quick-change barrel.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Gas-operated</li>
+            <li>30-round top-mounted magazine</li>
+            <li>Adjustable sights</li>
+            <li>Wooden stock, bipod support</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ======================= USSR ======================= -->
+<section>
+    <h2>Soviet Union</h2>
+    <p class="timeline">Evolution timeline: 1939–1945</p>
+
+    <h3>Bolt-Action Rifles</h3>
+    <h4>Mosin-Nagant M1891/30</h4>
+    <p>Primary infantry rifle, 7.62×54mmR, bolt-action, rugged for harsh conditions.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Barrel: 730 mm, rifled</li>
+            <li>Internal 5-round magazine</li>
+            <li>Bolt-action</li>
+            <li>Wooden stock</li>
+        </ul>
+    </div>
+
+    <h3>Semi-Automatic Rifles</h3>
+    <h4>SVT-40</h4>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/SVT-40.jpg/320px-SVT-40.jpg" alt="SVT-40">
+    <p>7.62×54mmR, gas-operated, 10-round detachable magazine. Issued mainly to specialized troops due to cost and complexity.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Gas-operated semi-auto</li>
+            <li>10-round detachable magazine</li>
+            <li>Barrel: 623 mm</li>
+            <li>Wooden stock</li>
+        </ul>
+    </div>
+
+    <h3>Submachine Guns</h3>
+    <h4>PPSh-41</h4>
+    <p>7.62×25mm, drum or stick magazines, extremely high rate of fire, key to Soviet infantry.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Blowback-operated, open bolt</li>
+            <li>35- or 71-round drum magazine</li>
+            <li>Wooden stock</li>
+        </ul>
+    </div>
+
+    <h3>Light Machine Guns</h3>
+    <h4>DP-28</h4>
+    <p>7.62×54mmR, top-mounted pan magazine, gas-operated, designed for squad support.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Pan magazine, 47 rounds</li>
+            <li>Barrel: 604 mm</li>
+            <li>Wooden stock, bipod mounted</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ======================= JAPAN ======================= -->
+<section>
+    <h2>Japan</h2>
+    <p class="timeline">Evolution timeline: 1937–1945</p>
+
+    <h3>Bolt-Action Rifles</h3>
+    <h4>Arisaka Type 38 / Type 99</h4>
+    <p>Japanese rifles chambered in 6.5×50mmSR and 7.7×58mm. Noted for reliability but slower rate of fire.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Barrel: 800–850 mm</li>
+            <li>Internal magazine: 5-round stripper clip-fed</li>
+            <li>Bolt-action</li>
+            <li>Wooden stock</li>
+        </ul>
+    </div>
+
+    <h3>Submachine Guns</h3>
+    <h4>Type 100</h4>
+    <p>Limited production SMG, 8×22mm Nambu, slow fire rate but compact.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Blowback-operated</li>
+            <li>30-round magazine</li>
+            <li>Wooden stock</li>
+        </ul>
+    </div>
+
+    <h3>Light Machine Guns</h3>
+    <h4>Type 96 / Type 99 LMG</h4>
+    <p>6.5/7.7mm LMGs, relatively heavy, used for squad support.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Pan magazine or box magazine (depending on model)</li>
+            <li>Air-cooled barrel</li>
+            <li>Wooden stock, bipod support</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ======================= ITALY ======================= -->
+<section>
+    <h2>Italy</h2>
+    <p class="timeline">Evolution timeline: 1935–1943</p>
+
+    <h3>Bolt-Action Rifles</h3>
+    <h4>Carcano M1891</h4>
+    <p>6.5×52mm, bolt-action rifle, standard Italian service rifle. Accurate but outdated by WWII.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Barrel: 780 mm</li>
+            <li>Internal magazine: 6-round clip-fed</li>
+            <li>Bolt-action</li>
+            <li>Wooden stock</li>
+        </ul>
+    </div>
+
+    <h3>Submachine Guns</h3>
+    <h4>Beretta M38</h4>
+    <p>9mm SMG, reliable, issued late in the war to infantry and special troops.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Blowback, open-bolt</li>
+            <li>20/40-round magazine</li>
+            <li>Folding or fixed stock</li>
+        </ul>
+    </div>
+
+    <h3>Light Machine Guns</h3>
+    <h4>Breda 30</h4>
+    <p>6.5mm, feed issues limited effectiveness, used for squad support.</p>
+    <div class="weapon-component">
+        <ul>
+            <li>Barrel: Fixed, air-cooled</li>
+            <li>20-round feed strip</li>
+            <li>Wooden stock, bipod</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h2>Conclusion</h2>
+    <p>WWII small arms evolved rapidly to meet the demands of modern combat. While early war relied on bolt-action rifles, semi-automatic rifles, submachine guns, and light machine guns became essential for mobility and firepower. Each nation adapted based on doctrine, resources, and battlefield conditions, shaping the future of infantry weapons.</p>
+</section>
+
+<footer>
+    <p>© 2025 Global WWII Small Arms Archive</p>
+</footer>
+
+</body>
+</html>
