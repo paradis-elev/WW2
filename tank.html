@@ -226,3 +226,253 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Tanc WW2 interactiv cu WASD și ținte mobile</title>
+  <style>
+    body {
+      background: linear-gradient(#a1c45a, #eaf3d4);
+      min-height: 100vh;
+      overflow: hidden;
+      margin: 0;
+    }
+    #battlefield {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+    #tank {
+      position: absolute;
+      width: 120px;
+      height: 80px;
+      left: 250px;
+      top: 400px;
+      z-index: 2;
+    }
+    /* Tanc (jucător) */
+    .tank-body {
+      width: 110px;
+      height: 40px;
+      background: #555;
+      border-radius: 12px;
+      position: absolute;
+      bottom: 20px;
+      left: 5px;
+    }
+    .tank-cannon {
+      width: 50px;
+      height: 10px;
+      background: #333;
+      position: absolute;
+      right: -40px;
+      top: 25px;
+      border-radius: 5px;
+    }
+    .track {
+      width: 120px;
+      height: 15px;
+      background: #222;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 6px;
+    }
+    /* Ținte: alte tancuri */
+    .enemy-tank {
+      position: absolute;
+      width: 110px;
+      height: 60px;
+      z-index: 1;
+      transition: left 0.15s linear, top 0.15s linear;
+    }
+    .enemy-body {
+      width: 90px;
+      height: 30px;
+      background: darkred;
+      border-radius: 10px;
+      position: absolute;
+      bottom: 15px;
+      left: 10px;
+    }
+    .enemy-cannon {
+      width: 40px;
+      height: 8px;
+      background: #6a2323;
+      position: absolute;
+      right: -30px;
+      top: 18px;
+      border-radius: 4px;
+    }
+    .enemy-track {
+      width: 110px;
+      height: 10px;
+      background: #6a2323;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-radius: 4px;
+    }
+    .enemy-tank.hit .enemy-body, .enemy-tank.hit .enemy-cannon, .enemy-tank.hit .enemy-track {
+      background: #888;
+      opacity: 0.3;
+    }
+    .explosion {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: url('https://img.icons8.com/emoji/96/explosion-emoji.png') no-repeat center;
+      background-size: contain;
+      pointer-events: none;
+      animation: explode 0.7s cubic-bezier(0.87,0.04,0.22,0.99);
+      z-index: 10;
+    }
+    @keyframes explode {
+      0% {opacity: 1; transform: scale(0.2);}
+      80% {opacity: 1; transform: scale(1);}
+      100% {opacity: 0; transform: scale(1.3);}
+    }
+    h1 {
+      color: #222;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 20px;
+      z-index: 100;
+      font-family: Arial, sans-serif;
+      font-size: 1.6em;
+      text-shadow: 1px 2px 2px #bbb;
+    }
+    /* Proiectil */
+    .shell {
+      position: absolute;
+      width: 16px;
+      height: 6px;
+      background: #ccc;
+      border-radius: 3px;
+      z-index: 50;
+    }
+  </style>
+</head>
+<body>
+  <div id="battlefield">
+    <h1>Control WASD. Apasă SPAȚIU să tragi. Lovește tancurile țintă mobile!</h1>
+    <div id="tank">
+      <div class="tank-body"></div>
+      <div class="tank-cannon"></div>
+      <div class="track"></div>
+    </div>
+    <!-- Tancuri țintă inamice. Ele se vor mișca -->
+    <div class="enemy-tank" id="enemy1" style="top: 120px; left: 750px;">
+      <div class="enemy-body"></div>
+      <div class="enemy-cannon"></div>
+      <div class="enemy-track"></div>
+    </div>
+    <div class="enemy-tank" id="enemy2" style="top: 330px; left: 900px;">
+      <div class="enemy-body"></div>
+      <div class="enemy-cannon"></div>
+      <div class="enemy-track"></div>
+    </div>
+    <div class="enemy-tank" id="enemy3" style="top: 500px; left: 600px;">
+      <div class="enemy-body"></div>
+      <div class="enemy-cannon"></div>
+      <div class="enemy-track"></div>
+    </div>
+  </div>
+  <script>
+    // Tank movement (WASD)
+    const tank = document.getElementById("tank");
+    let posX = 250, posY = 400;
+    const moveStep = 20;
+    document.addEventListener("keydown", function(e) {
+      switch(e.key.toLowerCase()) {
+        case 'w':
+          if (posY > 10) posY -= moveStep;
+          break;
+        case 's':
+          if (posY < window.innerHeight - 100) posY += moveStep;
+          break;
+        case 'a':
+          if (posX > 0) posX -= moveStep;
+          break;
+        case 'd':
+          if (posX < window.innerWidth - 140) posX += moveStep;
+          break;
+        case ' ':
+          fireShell();
+          break;
+      }
+      tank.style.left = posX + "px";
+      tank.style.top = posY + "px";
+    });
+
+    // Proiectil tras din tancul propriu
+    function fireShell() {
+      const shell = document.createElement("div");
+      shell.className = "shell";
+      shell.style.left = (posX + 120) + "px"; // ieșire din tun
+      shell.style.top = (posY + 35) + "px";
+      document.getElementById("battlefield").appendChild(shell);
+      let shellX = posX + 120;
+      const shellInterval = setInterval(() => {
+        shellX += 18;
+        shell.style.left = shellX + "px";
+        // Coliziune cu tancurile inamice
+        document.querySelectorAll('.enemy-tank:not(.hit)').forEach(tankTarget => {
+          const r = tankTarget.getBoundingClientRect();
+          const shellRect = shell.getBoundingClientRect();
+          if (
+            shellRect.left < r.right &&
+            shellRect.right > r.left &&
+            shellRect.top < r.bottom &&
+            shellRect.bottom > r.top
+          ) {
+              tankTarget.classList.add("hit");
+              showExplosion(tankTarget);
+
+              clearInterval(shellInterval);
+              shell.remove();
+          }
+        });
+        // Proiectilul iese din ecran
+        if (shellX > window.innerWidth) {
+          shell.remove();
+          clearInterval(shellInterval);
+        }
+      }, 15);
+    }
+
+    // Efect de explozie
+    function showExplosion(target) {
+      const rect = target.getBoundingClientRect();
+      const explosion = document.createElement("div");
+      explosion.className = "explosion";
+      explosion.style.left = (rect.left + 20) + "px";
+      explosion.style.top = (rect.top + 10) + "px";
+      document.body.appendChild(explosion);
+      setTimeout(() => {
+        explosion.remove();
+      }, 750);
+    }
+
+    // Mișcare automată a tancurilor țintă (stânga-dreapta)
+    const enemies = [
+      { el: document.getElementById("enemy1"), x: 750, y: 120, dx: 2, min: 700, max: 1000 },
+      { el: document.getElementById("enemy2"), x: 900, y: 330, dx: 3, min: 800, max: 1100 },
+      { el: document.getElementById("enemy3"), x: 600, y: 500, dx: 2.5, min: 500, max: 900 }
+    ];
+
+    function moveEnemies() {
+      enemies.forEach(enemy => {
+        if (enemy.el.classList.contains('hit')) return;
+        enemy.x += enemy.dx;
+        // Schimbă direcția când ajunge la limită
+        if (enemy.x >= enemy.max || enemy.x <= enemy.min) enemy.dx = -enemy.dx;
+        enemy.el.style.left = enemy.x + "px";
+      });
+    }
+    setInterval(moveEnemies, 30);
+  </script>
+</body>
+</html>
