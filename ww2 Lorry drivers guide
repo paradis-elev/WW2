@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>British WWII Lorry Driver’s Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body { font-family: "Georgia", serif; background: #e8e6dd; margin: 0; color: #2c2b28; line-height: 1.7; }
+    header {
+        background: url('https://upload.wikimedia.org/wikipedia/commons/1/17/Royal_Army_Service_Corps_Badge.png') center/120px no-repeat,
+                    #2f3e46;
+        color: #fff; padding: 80px 20px 40px; text-align: center;
+    }
+    header h1 { font-size: 3em; margin: 0; text-shadow: 2px 2px 4px #000; }
+    nav { background: #5b6d5b; padding: 10px; text-align: center; position: sticky; top: 0; }
+    nav a { color: #fff; margin: 0 15px; text-decoration: none; text-transform: uppercase; font-weight: bold; }
+    section { padding: 40px 20px; max-width: 900px; margin: auto; }
+    h2 { text-align: center; font-size: 2em; margin-bottom: 20px; color: #2f3e46; }
+    .chapter { background: #faf9f3; border-left: 6px solid #5b6d5b; padding: 30px; margin: 50px 0; box-shadow: 0 0 12px rgba(0,0,0,0.07); }
+    .illustration { text-align: center; margin: 20px 0; }
+    .illustration img { max-width: 100%; border: 4px solid #2f3e46; box-shadow: 0 0 10px rgba(0,0,0,0.4); }
+    footer { background: #2f3e46; color: #fff; text-align: center; padding: 20px; margin-top: 60px; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>British WWII Lorry Driver’s Guide</h1>
+    <p>A fully illustrated immersive handbook for the drivers who kept wartime Britain moving.</p>
+</header>
+
+<nav>
+    <a href="#intro">Intro</a>
+    <a href="#vehicles">Vehicles</a>
+    <a href="#routes">Routes</a>
+    <a href="#safety">Safety</a>
+    <a href="#maintenance">Maintenance</a>
+    <a href="#life">Life on the Road</a>
+</nav>
+
+<section id="intro" class="chapter">
+    <h2>1. Introduction: Drivers of the Blitzed Nation</h2>
+    <p>
+        While the bombs rained down and factories roared day and night, Britain depended on its lorry drivers.  
+        Whether hauling munitions from Midlands factories, delivering rations across blacked-out London, or  
+        navigating the narrow lanes of the countryside, British drivers formed a vital link in the nation’s  
+        survival and eventual victory.
+    </p>
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Bedford_QL_Truck.jpg" alt="Bedford QL">
+        <p><em>The Bedford QL: Icon of British wartime logistics.</em></p>
+    </div>
+</section>
+
+<section id="vehicles" class="chapter">
+    <h2>2. Vehicles of the British Supply Corps</h2>
+
+    <h3>Bedford QL Series</h3>
+    <p>Used extensively throughout the war, known for reliability and good handling in tight British roads.</p>
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Bedford_QL_Fuel_Tanker.jpg" alt="Bedford QL Tanker">
+    </div>
+
+    <h3>Austin K Series</h3>
+    <p>A versatile mid-war truck used for general haulage, troop movement, and radio van conversions.</p>
+
+    <h3>Morris Commercial C8</h3>
+    <p>Light and agile, these served convoy escorts, radio units, and artillery towing.</p>
+</section>
+
+<section id="routes" class="chapter">
+    <h2>3. Strategic Routes & Wartime Conditions</h2>
+
+    <h3>Convoying Through the Blitz</h3>
+    <p>Drivers ran blackout routes through shattered cities, guided by dimmed headlamps and firewatch wardens.</p>
+
+    <h3>Rural Ration Runs</h3>
+    <p>Delivering food and fuel to distant farms and depots required careful navigation of twisting lanes.</p>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/London_Blitz_St_Paul%27s.jpg" alt="Blitz London">
+    </div>
+
+    <h3>Ports & Overseas Staging</h3>
+    <p>South-coast harbors swarmed with drivers transporting material for North Africa, Italy, and D-Day.</p>
+</section>
+
+<section id="safety" class="chapter">
+    <h2>4. Safety, Blackouts & Civil Defence Rules</h2>
+    <ul>
+        <li><strong>Blackout curtains</strong> mandatory on all cabs.</li>
+        <li><strong>Tire conservation</strong> crucial due to rubber shortages.</li>
+        <li>Carry <strong>gas masks</strong> at all times.</li>
+        <li>Observe <strong>air-raid sirens</strong> and depot security regulations.</li>
+    </ul>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/58/WWII_Blackout_Poster_British.jpg" alt="Blackout poster">
+    </div>
+</section>
+
+<section id="maintenance" class="chapter">
+    <h2>5. Depot & Roadside Maintenance</h2>
+    <p>British lorrymen were expected to perform their own emergency repairs during rationing and shortages.</p>
+
+    <h3>Common Problems</h3>
+    <p><strong>Fuel contamination:</strong> Drain water and grit from tank sediment bowl.</p>
+    <p><strong>Electrical faults:</strong> Dynamo brushes often required field cleaning.</p>
+    <p><strong>Cold starts:</strong> Use pre-heaters or warm blankets around carburetors.</p>
+</section>
+
+<section id="life" class="chapter">
+    <h2>6. Life on the Road: Tea, Convoys & Stiff Upper Lips</h2>
+    <p>From makeshift tea stoves in cab corners to humorous signs on lorry backs, British drivers built their own  
+       culture of resilience and fellowship amid hardship.</p>
+
+    <blockquote>
+        “Keep calm, keep driving, and mind the blackout.”  
+        — Anonymous RASC Driver, 1941
+    </blockquote>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/ATS_Lorry_Driver_WWII.jpg" alt="ATS Lorry Driver">
+        <p><em>Women of the ATS also served as skilled drivers.</em></p>
+    </div>
+</section>
+
+<footer>
+    British WWII Lorry Driver’s Guide — In honour of the men and women of the RASC and ATS.
+</footer>
+
+</body>
+</html>
