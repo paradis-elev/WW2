@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>American WWII Trucker’s Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        font-family: "Georgia", serif;
+        background: #f2efe4;
+        margin: 0;
+        color: #2c2b28;
+        line-height: 1.7;
+    }
+
+    header {
+        background: url('https://upload.wikimedia.org/wikipedia/commons/4/4a/USAAF_roundel_1942-1943.svg') center/120px no-repeat,
+                    #3b3a36;
+        color: #fff;
+        padding: 80px 20px 40px;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 3em;
+        margin: 0;
+        text-shadow: 2px 2px 4px #000;
+    }
+
+    header p {
+        max-width: 700px;
+        margin: auto;
+        font-size: 1.2em;
+    }
+
+    nav {
+        background: #8b7e66;
+        padding: 10px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 999;
+    }
+
+    nav a {
+        color: #fff;
+        font-weight: bold;
+        margin: 0 15px;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    section {
+        padding: 40px 20px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2em;
+        margin-bottom: 20px;
+        color: #463f3a;
+    }
+
+    .illustration {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .illustration img {
+        max-width: 100%;
+        border: 4px solid #3b3a36;
+        box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    .chapter {
+        background: #fffdf7;
+        border-left: 6px solid #8b7e66;
+        padding: 30px;
+        margin: 50px 0;
+        box-shadow: 0 0 15px rgba(0,0,0,0.07);
+    }
+
+    footer {
+        background: #3b3a36;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        margin-top: 60px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>American WWII Trucker’s Field Guide</h1>
+    <p>An immersive illustrated handbook for the brave men who kept Allied supply lines alive across the vast American home front and far-flung theaters of war.</p>
+</header>
+
+<nav>
+    <a href="#intro">Intro</a>
+    <a href="#vehicles">Vehicles</a>
+    <a href="#routes">Routes</a>
+    <a href="#safety">Safety</a>
+    <a href="#maintenance">Maintenance</a>
+    <a href="#life">Life on the Road</a>
+</nav>
+
+<section id="intro" class="chapter">
+    <h2>1. Introduction: The Backbone of the Arsenal of Democracy</h2>
+    <p>
+        Before the engines of war could roar overseas, they first had to crawl across the highways, back roads, and dusty
+        depots of the United States. American truckers in WWII were the quiet giants who hauled everything from ammunition
+        crates to medical tents, aviation fuel to K-rations. Without their relentless miles, the war doesn’t move. 
+    </p>
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/GMC_CCKW_353_6x6_Truck.jpg"
+             alt="WWII US Army truck illustration">
+        <p><em>A classic GMC CCKW 2½-ton truck, affectionately known as the “Deuce and a Half.”</em></p>
+    </div>
+</section>
+
+<section id="vehicles" class="chapter">
+    <h2>2. Vehicles of the Road Warriors</h2>
+
+    <h3>GMC CCKW “Deuce and a Half”</h3>
+    <p>This 6×6 workhorse was the heart of the U.S. Army’s trucking fleet. Capable of traversing mud, sand, snow, and enemy-blasted roads, it hauled everything imaginable.</p>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/GMC_CCKW_353_6x6_Truck_US_Army.jpg" alt="CCKW Illustration">
+    </div>
+
+    <h3>Dodge WC Series</h3>
+    <p>
+       These nimble ¾-ton trucks served as command cars, ambulances, and general transport vehicles. Truckers often loved
+       them for their agility and mechanical reliability.
+    </p>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Dodge_WC-51_3-4-ton_4x4_Truck.jpg" alt="Dodge WC Truck">
+    </div>
+
+    <h3>Studebaker US6</h3>
+    <p>
+        A rugged truck extensively used in the Lend-Lease program and beloved by Soviet drivers. Its role in keeping
+        Eastern Front logistics alive cannot be overstated.
+    </p>
+</section>
+
+<section id="routes" class="chapter">
+    <h2>3. Strategic Routes & Harsh Terrains</h2>
+
+    <h3>The Alaska–Canada Military Highway</h3>
+    <p>
+        Built at breakneck speed in 1942, truckers braved mountains, wildlife, and the relentless cold. The route was both
+        a lifeline and a test of endurance.
+    </p>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Alcan_Highway_1942_Construction.jpg" alt="ALCAN Highway">
+    </div>
+
+    <h3>Desert Convoys in the Southwest</h3>
+    <p>Hauling fuel and aircraft parts across Arizona, Nevada, and California required careful cooling, water management, and knowledge of dust-choked roads.</p>
+
+    <h3>Atlantic Port Drayage</h3>
+    <p>
+        Truckers delivered essential material to East Coast ports, often working through blackout conditions and
+        navigating crowded military logistics hubs.
+    </p>
+</section>
+
+<section id="safety" class="chapter">
+    <h2>4. Safety Regulations & Wartime Best Practices</h2>
+    <ul>
+        <li><strong>Dim-Out & Blackout Driving:</strong> Keep lights shielded or low; coastal drivers always follow dim-out rules.</li>
+        <li><strong>Cargo Restraints:</strong> Ammunition, fuel, and medical supplies must be triple-secured with approved tie-downs.</li>
+        <li><strong>Identification Protocols:</strong> Show transport papers at every checkpoint. Unauthorized stops are forbidden.</li>
+        <li><strong>Tire Conservation:</strong> Rubber shortages demand careful braking, smooth acceleration, and proper inflation.</li>
+    </ul>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/WWII_Blackout_Driving_Poster.jpg" alt="Blackout driving poster">
+        <p><em>Wartime safety posters reminded drivers of ever-present danger.</em></p>
+    </div>
+</section>
+
+<section id="maintenance" class="chapter">
+    <h2>5. Field Maintenance & Improvised Repairs</h2>
+    <p>
+        WWII truckers were often their own mechanics. Remote routes meant relying on quick wits and limited tools.
+    </p>
+
+    <h3>Essential Tools</h3>
+    <ul>
+        <li>Hand crank wrench</li>
+        <li>Fuel filter cleaning kit</li>
+        <li>Canvas repair needles</li>
+        <li>Spare fan belt (rubber shortages made reuse common)</li>
+        <li>Emergency rations & stove for long breakdowns</li>
+    </ul>
+
+    <h3>Common Roadside Fixes</h3>
+    <p><strong>Frozen Carburetors:</strong> Warm with a stove tin or insulated cloth.</p>
+    <p><strong>Radiator Patching:</strong> Apply soap bar shavings to small leaks until proper repair is available.</p>
+    <p><strong>Electrical Failures:</strong> Field-strip wiring using uniform buttons as makeshift washers.</p>
+</section>
+
+<section id="life" class="chapter">
+    <h2>6. Life on the Road: Voices from the Convoy</h2>
+
+    <p>
+       American truckers had their own culture—stories shared at depots, jokes told over portable stoves, and the camaraderie of long convoys cutting through the night.
+    </p>
+
+    <blockquote>
+        “You keep the engine running, the cargo steady, and the miles rolling. That’s victory work, and every wheel turn helps the boys at the front.”
+    </blockquote>
+
+    <p>
+        Even during rationing and shortages, coffee was the unofficial fuel of the trucking corps. Roadside canteens and USO centers offered warm meals, music, and the rare chance for dancers or radio broadcasts.
+    </p>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/WWII_USO_Canteen.jpg" alt="USO Canteen">
+    </div>
+
+</section>
+
+<footer>
+    <p>American WWII Truckers Guide — A Tribute to the Quiet Giants of the Homefront</p>
+</footer>
+
+</body>
+</html>
