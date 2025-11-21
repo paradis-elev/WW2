@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Wehrmacht Kraftfahrer Field Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body { font-family: Georgia, serif; background:#edeae3; margin:0; color:#2c2b28; line-height:1.7; }
+    header {
+        background:url('https://upload.wikimedia.org/wikipedia/commons/2/2a/Balkenkreuz.svg') center/120px no-repeat,
+                   #303030;
+        color:#fff; padding:80px 20px 40px; text-align:center;
+    }
+    header h1 { margin:0; font-size:3em; text-shadow:2px 2px 5px #000; }
+    nav { background:#6c6c6c; padding:10px; text-align:center; position:sticky; top:0; }
+    nav a { color:#fff; margin:0 12px; text-decoration:none; text-transform:uppercase; font-weight:bold; }
+    section { max-width:900px; margin:auto; padding:40px 20px; }
+    .chapter { background:#faf9f4; border-left:6px solid #6c6c6c; padding:30px; margin:50px 0; box-shadow:0 0 12px rgba(0,0,0,0.08); }
+    .illustration { text-align:center; margin:20px 0; }
+    .illustration img { max-width:100%; border:4px solid #303030; box-shadow:0 0 10px rgba(0,0,0,0.4); }
+    h2 { text-align:center; color:#303030; font-size:2em; }
+    footer { background:#303030; color:#fff; text-align:center; padding:20px; margin-top:60px; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Wehrmacht Kraftfahrer Field Guide</h1>
+    <p>The illustrated handbook of supply drivers in the German armed forces.</p>
+</header>
+
+<nav>
+    <a href="#intro">Intro</a>
+    <a href="#vehicles">Vehicles</a>
+    <a href="#routes">Routes</a>
+    <a href="#safety">Safety</a>
+    <a href="#maintenance">Maintenance</a>
+    <a href="#life">Life</a>
+</nav>
+
+<section id="intro" class="chapter">
+    <h2>1. Introduction: Engines Behind Blitzkrieg</h2>
+    <p>
+        German drivers were the backbone of mobile warfare. Their trucks moved fuel, ammunition, rations, and  
+        staff officers across rapidly shifting fronts. But shortages, harsh winters, and constant enemy attacks  
+        turned logistics into a continuous struggle.
+    </p>
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Opel_Blitz_3.6-36S.jpg" alt="Opel Blitz">
+        <p><em>The Opel Blitz — symbol of Wehrmacht mobility.</em></p>
+    </div>
+</section>
+
+<section id="vehicles" class="chapter">
+    <h2>2. Vehicles of the Wehrmacht</h2>
+
+    <h3>Opel Blitz</h3>
+    <p>The most common German truck; versatile, reliable, and used on all fronts.</p>
+
+    <h3>Mercedes-Benz L3000</h3>
+    <p>Heavy-duty truck especially valued in North Africa.</p>
+
+    <h3>Captured Foreign Trucks</h3>
+    <p>
+        Germany relied heavily on French, Czech, Soviet, and Italian trucks. Spare-part shortages  
+        caused improvised fixes and mismatched convoys.
+    </p>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Mercedes_L3000_SdKfz.jpg" alt="Mercedes Truck">
+    </div>
+</section>
+
+<section id="routes" class="chapter">
+    <h2>3. Operational Routes & Challenges</h2>
+
+    <h3>Eastern Front</h3>
+    <p>Winter froze engines solid; summer mud immobilized entire divisions.</p>
+
+    <h3>Afrika Korps</h3>
+    <p>Drivers fought sand, heat, dust-clogged carburetors, and endless fuel shortages.</p>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Deutsches_Afrikakorps_sands.jpg" alt="Afrikakorps">
+    </div>
+
+    <h3>Western Europe</h3>
+    <p>Air power forced night driving and heavy camouflage during daylight.</p>
+</section>
+
+<section id="safety" class="chapter">
+    <h2>4. Safety Regulations & Camouflage</h2>
+    <ul>
+        <li><strong>Lights dimmed or blue-filtered</strong> to avoid Allied aircraft.</li>
+        <li><strong>Camouflage tarps</strong> required during all daytime stops.</li>
+        <li><strong>Convoy spacing:</strong> minimum 60 meters under strafing threat.</li>
+        <li><strong>Fuel discipline:</strong> no idling; every liter counted.</li>
+    </ul>
+</section>
+
+<section id="maintenance" class="chapter">
+    <h2>5. Field Maintenance & Shortage Solutions</h2>
+
+    <h3>Critical Tools</h3>
+    <ul>
+        <li>Hand pump for fuel barrels</li>
+        <li>Spare distributor points</li>
+        <li>Soldering set</li>
+        <li>Mixed spanner sizes (due to foreign vehicles)</li>
+    </ul>
+
+    <h3>Improvised Repairs</h3>
+    <p><strong>Radiator leaks:</strong> Patch with ground coffee + sealant.</p>
+    <p><strong>Sand in carburetors:</strong> Clean with kerosene and cloth filters.</p>
+    <p><strong>Snowbound engines:</strong> Light fires under oil pans (dangerous but common).</p>
+</section>
+
+<section id="life" class="chapter">
+    <h2>6. Life in the Motor Column</h2>
+    <p>
+        Drivers endured freezing nights, dust storms, partisans, and constant aircraft attacks.  
+        Many lived out of their cabs and carried personal kits including coffee, bread, and  
+        makeshift stoves.
+    </p>
+
+    <blockquote>
+        “The infantry wins battles — the trucks win campaigns.”
+    </blockquote>
+
+    <div class="illustration">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/WWII_German_Truck_Column.jpg" alt="Truck column">
+    </div>
+</section>
+
+<footer>
+    Wehrmacht Kraftfahrer Field Guide — Tribute to the drivers of a vast, strained war machine.
+</footer>
+
+</body>
+</html>
