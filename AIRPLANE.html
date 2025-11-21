@@ -196,5 +196,24 @@ document.addEventListener("keyup", (e) => {
 update();
 </script>
 </body>
-</html>
+</html>// --- Add inside keydown ---
+if (e.key === "w" || e.key === "W") keys["ArrowUp"] = true;
+if (e.key === "s" || e.key === "S") keys["ArrowDown"] = true;
+if (e.key === "a" || e.key === "A") keys["ArrowLeft"] = true;
+if (e.key === "d" || e.key === "D") keys["ArrowRight"] = true;
+
+// Bomb (space already works, but include lowercase safety)
+if (e.key === " ") {
+    player.bombs.push({
+        x: player.x,
+        y: player.y + 20,
+        speed: 7
+    });
+}
+// --- Add inside keyup ---
+if (e.key === "w" || e.key === "W") keys["ArrowUp"] = false;
+if (e.key === "s" || e.key === "S") keys["ArrowDown"] = false;
+if (e.key === "a" || e.key === "A") keys["ArrowLeft"] = false;
+if (e.key === "d" || e.key === "D") keys["ArrowRight"] = false;
+
 
